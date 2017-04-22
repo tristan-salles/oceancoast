@@ -22,8 +22,10 @@ RUN mkdir /workspace && \
 # Copy local directory to image
 COPY UoS /workspace
 
+RUN mkdir /code
+COPY xbeach /code
 
-RUN cd /workspace/UoS/xbeach && \
+RUN cd /code/xbeach && \
     sh autogen.sh && \
     ./configure --with-netcdf && \
     make && \
