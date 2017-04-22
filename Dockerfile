@@ -23,7 +23,7 @@ RUN mkdir /workspace && \
 COPY UoS /workspace
 
 
-RUN cd /workspace/xbeach && \
+RUN cd /workspace/UoS/xbeach && \
     sh autogen.sh && \
     ./configure --with-netcdf && \
     make && \
