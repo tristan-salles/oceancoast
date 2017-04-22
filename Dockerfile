@@ -31,14 +31,6 @@ RUN cd /code && \
     make && \
     make install
 
-
-RUN mkdir /badlands
-WORKDIR /badlands
-RUN git clone https://github.com/badlands-model/pyBadlands.git
-WORKDIR /badlands/pyBadlands/pyBadlands/libUtils
-RUN make
-RUN pip install -e /badlands/pyBadlands
-
 # expose notebook port
 EXPOSE 8888
 
