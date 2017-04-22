@@ -13,8 +13,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     autoconf \
     libtool \
     shtool \
-    autogen \
-    svn
+    autogen 
 
 RUN cd /usr/local && \
     svn checkout https://svn.oss.deltares.nl/repos/xbeach/trunk && \
