@@ -25,7 +25,7 @@ COPY UoS /workspace
 RUN mkdir /code
 COPY xbeach /code
 
-RUN cd /code/xbeach && \
+RUN cd /code && \
     sh autogen.sh && \
     ./configure --with-netcdf && \
     make && \
