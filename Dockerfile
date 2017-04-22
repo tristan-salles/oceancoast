@@ -31,6 +31,8 @@ RUN cd /code && \
     make && \
     make install
 
+RUN source ~/.bashrc
+
 # expose notebook port
 EXPOSE 8888
 
@@ -42,5 +44,8 @@ WORKDIR /workspace
 EXPOSE 8888
 ENTRYPOINT ["/usr/local/bin/tini", "--"]
 
+ENV LD_LIBRARY_PATH=/usr/local/lib
+
 CMD jupyter notebook --ip=0.0.0.0 --no-browser \
-    --NotebookApp.default_url='/tree/StartHere.ipynb'
+    NotebookApp.token=''
+#--NotebookApp.default_url=''
