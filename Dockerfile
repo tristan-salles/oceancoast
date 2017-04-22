@@ -14,7 +14,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     libtool \
     shtool \
     autogen \
-    mako \
     svn
 
 RUN cd /usr/local && \
