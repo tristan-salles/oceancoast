@@ -13,15 +13,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     autoconf \
     libtool \
     shtool \
-    autogen 
-
-RUN cd /usr/local && \
-    svn checkout https://svn.oss.deltares.nl/repos/xbeach/trunk && \
-    cd trunk && \
-    sh autogen.sh && \
-    ./configure --with-netcdf && \
-    make && \
-    make install
+    autogen
 
 # Get debian base install and some unnecessary files, copy local data to workspace
 RUN mkdir /workspace && \
@@ -29,6 +21,13 @@ RUN mkdir /workspace && \
 
 # Copy local directory to image
 COPY UoS /workspace
+
+
+RUN cd /workspace/xbeach && \
+    sh autogen.sh && \
+    ./configure --with-netcdf && \
+    make && \
+    make install
 
 # expose notebook port
 EXPOSE 8888
