@@ -31,6 +31,14 @@ RUN cd /code && \
     make && \
     make install
 
+
+RUN mkdir /badlands
+WORKDIR /badlands
+RUN git clone https://github.com/badlands-model/pyBadlands.git
+WORKDIR /badlands/pyBadlands/pyBadlands/libUtils
+RUN make
+RUN pip install -e /badlands/pyBadlands
+
 # expose notebook port
 EXPOSE 8888
 
@@ -42,7 +50,7 @@ WORKDIR /workspace
 EXPOSE 8888
 ENTRYPOINT ["/usr/local/bin/tini", "--"]
 
-ENV LD_LIBRARY_PATH=/usr/local/lib
+ENV LD_LIBRARY_PATH=/usr/local/lib:/badlands/pyBadlands/pyBadlands/libUtils
 
 CMD jupyter notebook --ip=0.0.0.0 --no-browser --NotebookApp.token=''
 #--NotebookApp.default_url=''
