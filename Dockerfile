@@ -31,8 +31,6 @@ RUN cd /code && \
     make && \
     make install
 
-RUN source ~/.bashrc
-
 # expose notebook port
 EXPOSE 8888
 
