@@ -1,6 +1,29 @@
-FROM tristansalles/usyd-uos-geos-base:v1.01
+FROM tristansalles/usyd-uos-geos-ocean-base:latest
 
 MAINTAINER Tristan Salles
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    python-imaging
+
+RUN pip install Pillow cmocean
+
+# Install XBEACH model
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    automake \
+    autoconf \
+    libtool \
+    shtool \
+    autogen \
+    mako \
+    svn
+
+RUN cd /usr/local && \
+    svn checkout https://svn.oss.deltares.nl/repos/xbeach/trunk && \
+    cd trunk && \
+    sh autogen.sh && \
+    ./configure --with-netcdf && \
+    make && \
+    make install
 
 # Get debian base install and some unnecessary files, copy local data to workspace
 RUN mkdir /workspace && \
