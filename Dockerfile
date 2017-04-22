@@ -2,10 +2,10 @@ FROM tristansalles/usyd-uos-geos-ocean-base:latest
 
 MAINTAINER Tristan Salles
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    python-imaging
+#RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+#    python-imaging
 
-RUN pip install Pillow cmocean
+RUN pip install cmocean
 
 # Install XBEACH model
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
